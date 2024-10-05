@@ -13,13 +13,14 @@ class RuleSet<T>(val setId: String, val description: String, val rules: List<Rul
     /**
      * Fire a set of rules. Return true is at least one rule condition is true.
      */
-    fun fire(t: T): Boolean {
-        var result : Boolean = false;
+    fun fire(t: T): RuleState {
         rules.forEach() {
             var r = it.fire(t)
-            result = result || r
+            if (r != RuleState.NEXT ) {
+                return r
+            }
         }
-        return result
+        return RuleState.NEXT
     }
 }
 

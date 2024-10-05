@@ -1,5 +1,6 @@
 package rule
 
+import org.junit.jupiter.api.Assertions.assertSame
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 
@@ -20,6 +21,7 @@ class RuleSetTest {
                     }
                     action = {
                         println("Rule 1 is fired")
+                        RuleState.NEXT
                     }
                 }
                 rule("com.networknt.r0002-1.0.0") {
@@ -32,10 +34,11 @@ class RuleSetTest {
                     )
                     action = {
                         println("Rule 2 is fired")
+                        RuleState.NEXT
                     }
                 }
             }
         }
-        assertTrue(s.fire(user))
+        assertSame(s.fire(user), RuleState.NEXT)
     }
 }

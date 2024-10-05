@@ -27,17 +27,17 @@ interface RuleEngine<T> {
      * fire a single rule by its id.
      * @param id rule Id
      * @param t T of fact
-     * @return Boolean true if the rule condition is met and the action is executed.
+     * @return RuleState true if the rule condition is met and the action is executed.
      */
-    fun fireRule(id: String, t: T): Boolean
+    fun fireRule(id: String, t: T): RuleState
 
     /**
      * fire a set of rules by its setId
      * @param setId rule set id
      * @param t T of fact
-     * @return Boolean true if at least one rule condition is met.
+     * @return RuleState true if at least one rule condition is met.
      */
-    fun fireRuleSet(setId: String, t: T): Boolean
+    fun fireRuleSet(setId: String, t: T): RuleState
 
     companion object {
         @Volatile private var INSTANCE: RuleEngine<*>? = null

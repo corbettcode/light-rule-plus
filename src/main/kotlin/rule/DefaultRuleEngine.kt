@@ -13,11 +13,11 @@ class DefaultRuleEngine<T>: RuleEngine<T> {
         ruleSetMap.put(ruleSet.setId, ruleSet)
     }
 
-    override fun fireRule(id: String, t: T): Boolean {
-        return ruleMap.get(id)?.fire(t) ?: false
+    override fun fireRule(id: String, t: T): RuleState {
+        return ruleMap.get(id)?.fire(t) ?: RuleState.NEXT
     }
 
-    override fun fireRuleSet(setId: String, t: T): Boolean {
-        return ruleSetMap.get(setId)?.fire(t) ?: false
+    override fun fireRuleSet(setId: String, t: T): RuleState {
+        return ruleSetMap.get(setId)?.fire(t) ?: RuleState.NEXT
     }
 }
