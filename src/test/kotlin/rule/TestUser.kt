@@ -1,6 +1,6 @@
 package rule
 
-data class User(
+data class TestUser(
         val id: Int = 0,
         val firstName: String = "",
         val lastName: String = "",
@@ -27,8 +27,8 @@ enum class Gender{
     FEMALE
 }
 
-fun withLastName(lastName: String): Condition<User> = Condition{it.lastName.equals(lastName)}
-fun withFirstName(firstName: String): Condition<User> = Condition{it.firstName.equals(firstName)}
-fun withGender(gender: Gender): Condition<User> = Condition{it.gender == gender}
-fun withActivated(activated: Boolean): Condition<User> = Condition{it.activated == activated}
+fun withLastName(lastName: String): Condition<TestUser> = Condition{it.lastName.equals(lastName)}
+fun withFirstName(firstName: String): Condition<TestUser> = Condition{it.firstName.equals(firstName)}
+fun withGender(gender: Gender): Condition<TestUser> = Condition{it.gender == gender}
+fun withActivated(activated: Boolean): Condition<TestUser> = Condition{it.activated == activated}
 

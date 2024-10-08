@@ -1,8 +1,6 @@
 package rule
 
-import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertSame
-import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 
 class RuleTest {
@@ -34,7 +32,7 @@ class RuleTest {
 
     @Test
     fun `a simple rule with one condition and one action`() {
-        val rule = rule<User>("com.networknt.r0001-1.0.0") {
+        val rule = rule<TestUser>("com.networknt.r0001-1.0.0") {
             name = "rule 0001"
             description = "This is the first rule for testing with one condition and one action"
             condition = {
@@ -47,13 +45,13 @@ class RuleTest {
             }
 
         }
-        val result = rule.fire(User(firstName = "Steve", lastName = "Hu"))
+        val result = rule.fire(TestUser(firstName = "Steve", lastName = "Hu"))
         println(result)
     }
 
     @Test
     fun `a rule with or conditions`() {
-        val rule = rule<User>("com.networknt.r0002-1.0.0") {
+        val rule = rule<TestUser>("com.networknt.r0002-1.0.0") {
             name = "rule 0002"
             description = "This is the rule for testing with multiple conditions compound with or"
             condition = or (
@@ -68,7 +66,7 @@ class RuleTest {
             }
 
         }
-        val result = rule.fire(User(firstName = "Steve", lastName = "Hu"))
+        val result = rule.fire(TestUser(firstName = "Steve", lastName = "Hu"))
         assertSame(result, RuleState.NEXT)
         println(result)
 
@@ -76,7 +74,7 @@ class RuleTest {
 
     @Test
     fun `a rule with and conditions`() {
-        val rule = rule<User>("com.networknt.r0003-1.0.0") {
+        val rule = rule<TestUser>("com.networknt.r0003-1.0.0") {
             name = "rule 0003"
             description = "This is the rule for testing with multiple conditions compound with and"
             condition = and (
@@ -91,14 +89,14 @@ class RuleTest {
                 RuleState.NEXT
             }
         }
-        val result = rule.fire(User(firstName = "Steve", lastName = "Hu"))
+        val result = rule.fire(TestUser(firstName = "Steve", lastName = "Hu"))
         assertSame(result, RuleState.NEXT)
         println(result)
     }
 
     @Test
     fun `a simple rule where action returns BREAK`() {
-        val rule = rule<User>("com.corbettcode.r0004-1.0.0") {
+        val rule = rule<TestUser>("com.corbettcode.r0004-1.0.0") {
             name = "rule 0003"
             description = "This is the rule for testing a return rule-state of break"
             condition = {
@@ -110,7 +108,7 @@ class RuleTest {
                 RuleState.BREAK
             }
         }
-        val result = rule.fire(User(firstName = "Steve", lastName = "Hu"))
+        val result = rule.fire(TestUser(firstName = "Steve", lastName = "Hu"))
         assertSame(result, RuleState.BREAK)
         println("returned: $result")
     }

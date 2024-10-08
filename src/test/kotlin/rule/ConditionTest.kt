@@ -74,8 +74,8 @@ class ConditionTest {
 
     @Test
     fun `user with or and combined`() {
-        val user1 = User(firstName = "Steve", lastName = "Hu", gender = Gender.MALE, activated = false)
-        val user2 = User(firstName = "John", lastName = "Doe", gender = Gender.MALE, activated = true)
+        val testUser1 = TestUser(firstName = "Steve", lastName = "Hu", gender = Gender.MALE, activated = false)
+        val testUser2 = TestUser(firstName = "John", lastName = "Doe", gender = Gender.MALE, activated = true)
 
         var rule =
                 or (
@@ -88,14 +88,14 @@ class ConditionTest {
                         withActivated(true)
                     )
                 )
-        assertTrue(rule.invoke(user1))
-        assertTrue(rule.invoke(user2))
+        assertTrue(rule.invoke(testUser1))
+        assertTrue(rule.invoke(testUser2))
     }
 
     @Test
     fun `user with and or combined`() {
-        val user1 = User(firstName = "Steve", lastName = "Hu", gender = Gender.MALE, activated = false)
-        val user2 = User(firstName = "John", lastName = "Doe", gender = Gender.MALE, activated = true)
+        val testUser1 = TestUser(firstName = "Steve", lastName = "Hu", gender = Gender.MALE, activated = false)
+        val testUser2 = TestUser(firstName = "John", lastName = "Doe", gender = Gender.MALE, activated = true)
 
         var rule =
                 and (
@@ -108,8 +108,8 @@ class ConditionTest {
                                 withActivated(true)
                         )
                 )
-        assertFalse(rule.invoke(user1))
-        assertTrue(rule.invoke(user2))
+        assertFalse(rule.invoke(testUser1))
+        assertTrue(rule.invoke(testUser2))
     }
 
 }

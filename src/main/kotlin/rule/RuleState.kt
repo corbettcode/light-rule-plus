@@ -1,5 +1,5 @@
 package rule
 
 enum class RuleState {
-    BREAK, NEXT , EXCEPTION
+    BREAK, NEXT, EXCEPTION
 }

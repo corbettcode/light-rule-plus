@@ -1,15 +1,14 @@
 package rule
 
 import org.junit.jupiter.api.Assertions.assertSame
-import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 
 class RuleEngineTest {
-    val engine: RuleEngine<User> = RuleEngine.getInstance()
+    val engine: RuleEngine<TestUser> = RuleEngine.getInstance()
 
     @Test
     fun `add a rule to rule engine and fire`() {
-        val rule1 = rule<User>("com.networknt.rule0001-1.0.0") {
+        val rule1 = rule<TestUser>("com.networknt.rule0001-1.0.0") {
             name = "rule 0001"
             description = "This is the first rule for testing with one condition and one action"
             condition = {
@@ -22,13 +21,13 @@ class RuleEngineTest {
             }
         }
         engine.addRule(rule1)
-        assertSame(engine.fireRule("com.networknt.rule0001-1.0.0", User(firstName = "Steve", lastName = "Hu")), RuleState.NEXT)
+        assertSame(engine.fireRule("com.networknt.rule0001-1.0.0", TestUser(firstName = "Steve", lastName = "Hu")), RuleState.NEXT)
     }
 
     @Test
     fun `add a rule set to rule engine and fire`() {
-        val user = User(firstName = "Steve", lastName = "Hu", activated = false)
-        val s = ruleSet<User> {
+        val testUser = TestUser(firstName = "Steve", lastName = "Hu", activated = false)
+        val s = ruleSet<TestUser> {
             setId = "com.networknt.set001-1.0.0"
             description = "this is the first set of rules"
             rules {
@@ -59,7 +58,7 @@ class RuleEngineTest {
             }
         }
         engine.addRuleSet(s)
-        assertSame(engine.fireRuleSet("com.networknt.set001-1.0.0", user), RuleState.NEXT)
+        assertSame(engine.fireRuleSet("com.networknt.set001-1.0.0", testUser), RuleState.NEXT)
     }
 
 

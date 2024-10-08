@@ -10,14 +10,16 @@ package rule
  * @author Steve Hu
  */
 class RuleSet<T>(val setId: String, val description: String, val rules: List<Rule<T>>) {
+    var ruleCount: Int = 0
     /**
      * Fire a set of rules. Return true is at least one rule condition is true.
      */
     fun fire(t: T): RuleState {
         rules.forEach() {
-            var r = it.fire(t)
-            if (r != RuleState.NEXT ) {
-                return r
+            var results = it.fire(t)
+            ruleCount++
+            if (results != RuleState.NEXT ) {
+                return results
             }
         }
         return RuleState.NEXT
@@ -32,7 +34,7 @@ class RuleSetBuilder<T> {
     fun rules(block: RULES<T>.() -> Unit) {
         rules.addAll(RULES<T>().apply(block))
     }
-    fun build(): RuleSet<T> = RuleSet<T>(setId, description, rules)
+    fun build(): RuleSet<T> = RuleSet<T>(setId, description, rules.sortedBy { it.priority })
 }
 
 class RULES<T>: ArrayList<Rule<T>>() {
