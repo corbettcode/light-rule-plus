@@ -38,8 +38,8 @@ class RuleSetTest {
                 }
             }
         }
-        assertSame(s.fire(testUser), RuleState.NEXT)
-        assertSame(s.ruleCount,2)
+        assertSame(RuleState.NEXT, s.fire(testUser))
+        assertSame(2, s.ruleCount)
     }
 
     @Test
@@ -75,8 +75,8 @@ class RuleSetTest {
                 }
             }
         }
-        assertSame(s.fire(testUser), RuleState.BREAK)
-        assertSame(s.ruleCount,1)
+        assertSame(RuleState.BREAK, s.fire(testUser))
+        assertSame(1, s.ruleCount)
     }
 
     @Test
@@ -114,7 +114,7 @@ class RuleSetTest {
                 }
             }
         }
-        assertSame(s.fire(testUser), RuleState.NEXT)
-        assertSame(s.ruleCount,2)
+        assertSame(RuleState.NEXT, s.fire(testUser))
+        assertSame(2, s.ruleCount)
     }
 }

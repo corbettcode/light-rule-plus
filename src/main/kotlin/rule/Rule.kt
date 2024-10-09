@@ -29,11 +29,11 @@ class Rule<T> constructor(
             RuleState.NEXT
         }
 
-        fun setName(name: String?) = apply { this.name = name }
-        fun setPriority(priority: Int) = apply { this.priority = priority }
-        fun setDescription(description: String?) = apply { this.description = description }
-        fun setCondition(block: Predicate<T>) = apply { this.condition = block}
-        fun setAction(block: () -> RuleState) = apply { this.action = block }
+//        fun setName(name: String?) = apply { this.name = name }
+//        fun setPriority(priority: Int) = apply { this.priority = priority }
+//        fun setDescription(description: String?) = apply { this.description = description }
+//        fun setCondition(block: Predicate<T>) = apply { this.condition = block}
+//        fun setAction(block: () -> RuleState) = apply { this.action = block }
         fun build(): Rule<T> {
             return Rule(id, name, priority, description, condition, action)
         }

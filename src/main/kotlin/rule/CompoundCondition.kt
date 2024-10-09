@@ -11,11 +11,11 @@ class CompondCondition<T> : Predicate<T> {
 
 
     override fun invoke(t: T): Boolean {
-        if(operator == CompondOperator.AND) {
+        if (operator == CompondOperator.AND) {
             // all predicates must be true to return true, otherwise false
             conditions.forEach() {
                 // first false will return false immediately
-                if(!it.invoke(t)) return false
+                if (!it.invoke(t)) return false
             }
             return true
         } else {
